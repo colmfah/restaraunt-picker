@@ -7,7 +7,7 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-restaraunts-link">
                 <a href="{% url 'restaraunts' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                <a href="{% url 'restaraunts' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
+                <a href="{% url 'restaraunts' %}?category=chinese,mexican" class="dropdown-item ">By Category</a>
                 <a href="{% url 'restaraunts' %}" class="dropdown-item">All Restaraunts</a>
             </div>
         </li>
