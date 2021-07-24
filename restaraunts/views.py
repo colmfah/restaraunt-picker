@@ -10,8 +10,23 @@ def all_restaraunts(request):
 
     restaraunts = Restaraunt.objects.all()
     query = None
+    sort = None
+    direction = None
 
     if request.GET:
+        if 'sort' in request.GET:
+            sortkey = request.GET['sort']
+            sort = sortkey
+            if sortkey == 'name':
+                sortkey = 'lower_name'
+                restaraunts = restaraunts.annotate(lower_name=Lower('name'))
+
+            if 'direction' in request.GET:
+                direction = request.GET['direction']
+                if direction == 'desc':
+                    sortkey = f'-{sortkey}'
+            restaraunts = restaraunts.order_by(sortkey)
+
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
@@ -21,9 +36,12 @@ def all_restaraunts(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             restaraunts = restaraunts.filter(queries)
 
+    current_sorting = f'{sort}_{direction}'
+
     context = {
         'restaraunts': restaraunts,
         'search_term': query,
+        'current_sorting': current_sorting,
     }
 
     return render(request, 'restaraunts/restaraunts.html', context)
