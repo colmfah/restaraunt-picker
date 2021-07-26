@@ -11,6 +11,11 @@ body {
 
 }
 
+.img-fluid {
+    height: 300px;
+    object-fit: cover;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
