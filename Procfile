@@ -1,1 +1,1 @@
-web: gunicorn restaraunt-picker.wsgi:application
+web: gunicorn restaraunt_picker.wsgi:application
