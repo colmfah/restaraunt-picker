@@ -38,9 +38,6 @@
 
                     {% for item in bag_items %}
                     <tr>
-                        <td class="p-3 w-25">
-                            <img class="img-fluid rounded" src="{{ item.restaraunt.image_url }}">
-                        </td>
                         <td class="py-3">
                             <p class="my-0"><strong>{{ item.restaraunt.name }}</strong></p>
                             <p class="my-0 small text-muted">SKU: {{ item.restaraunt.sku|upper }}</p>
